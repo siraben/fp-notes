@@ -9,9 +9,32 @@ Abelson and Sussman, *Structure and Interpretation of Computer Programs*
 
 Hutton, *Programming in Haskell*
 
-Bird, *Introduction to Functional Programming Using Haskell*
+Three incarnations of Bird & Wadler’s introductory text:
+
+  * Richard Bird and Philip Wadler, *Introduction To Functional
+    Programming*.  Prentice Hall, 1988.  “The classic text on
+    functional programming”, according to Philip Bewig.  Elegant and
+    rigorous.  In principle, Bird & Wadler use Miranda™, but most examples
+    are in a sort of universal lazy ML-like language with greater
+    notational flexibility.
+    [PDF available.](https://usi-pl.github.io/lc/sp-2014/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf)
+
+  * Richard Bird, *Introduction to Functional Programming Using Haskell*.
+    Prentice Hall, 1998.  Contains lots of new material, including
+    an introduction to monadic programming and typeclasses.  The title
+    is appropriate: the book uses Haskell to introduce functional
+    programming, and does not provide a tutorial in using GHC or any
+    libraries.
+
+  * Richard Bird, *Thinking Functionally With Haskell*.  Cambridge
+    University Press, 2015.  More conversational and more
+    Haskell-oriented than the previous book.
 
 Paulson, *ML for the Working Programmer*
+
+Greg Michaelson, *An Introduction To Functional Programming Through
+Lambda Calculus*.  Dover, 2011.
+[PDF of older edition available.](http://www.macs.hw.ac.uk/~greg/books/gjm.lambook88.pdf)
 
 ## Data structures and algorithms
 
