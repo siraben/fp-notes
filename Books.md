@@ -14,21 +14,20 @@ Three incarnations of Bird & Wadler’s introductory text:
   * Richard Bird and Philip Wadler, *Introduction To Functional
     Programming*.  Prentice Hall, 1988.  “The classic text on
     functional programming”, according to Philip Bewig.  Elegant and
-    rigorous.  In principle, Bird & Wadler use Miranda™, but most examples
-    are in a sort of universal lazy ML-like language with greater
-    notational flexibility.
+    rigorous.
     [PDF available.](https://usi-pl.github.io/lc/sp-2014/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf)
 
   * Richard Bird, *Introduction to Functional Programming Using Haskell*.
     Prentice Hall, 1998.  Contains lots of new material, including
     an introduction to monadic programming and typeclasses.  The title
     is appropriate: the book uses Haskell to introduce functional
-    programming, and does not provide a tutorial in using GHC or any
-    libraries.
+    programming, and doesn’t cover the specifics of any Haskell
+    implementation.
 
   * Richard Bird, *Thinking Functionally With Haskell*.  Cambridge
     University Press, 2015.  More conversational and more
-    Haskell-oriented than the previous book.
+    Haskell-oriented than the previous book, while covering most of the
+    same material (and some new).
 
 Paulson, *ML for the Working Programmer*
 
