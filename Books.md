@@ -28,3 +28,20 @@ Friedman and Wand, Essentials of Programming Languages
 
 ## Theorem proving in a proof assistant
 Pierce et al, Logical Foundations
+
+## Lambda Calculus
+
+J. Roger Hindley and Jonathan P. Seldin, *Lambda-Calculus and
+Combinators*.  Cambridge University Press, 2008.  Excellent foundational
+text, for those comfortable with a fast-moving, formal approach.
+
+## FP Topics
+
+Jeremy Gibbons and Oege de Moor, eds., *The Fun Of Programming*.
+Palmgrave Macmillan, 2003.  A collection of chapters on various topics
+by a number of excellent functional programming researchers, including
+Okasaki, Gibbons (the classic “Origami Programming”), Hudak,
+Peyton-Jones, Wadler, and others.  The style is often very close to
+Bird’s work; program calculation is used extensively, and there are
+many references to *Introduction to Functional Programming Using
+Haskell*.  An excellent follow-on to that book.
