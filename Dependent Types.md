@@ -3,7 +3,7 @@
 ## Dependent functions
 Consider the predecessor function on natural numbers.  What value
 should it have for 0?  Suppose, for the sake of argument, we want to
-return `false`.  Here's a first attempt.
+return `false`.  Here’s a first attempt.
 
 ```coq
 Fail Definition dec (n : nat) :=
@@ -21,7 +21,7 @@ The term "n'" has type "nat" while it is expected to have type "bool".
 *)
 ```
 
-As every functional programmer knows, you can't have a function that
+As every functional programmer knows, you can’t have a function that
 returns a `bool` in one case and returns `nat` in another, this isn't
 Python!
 
@@ -38,7 +38,7 @@ Check dec.
 (* dec : nat -> bool + nat *)
 ```
 
-But somehow this is unsatisfying.  We can't treat a dec'd number as a
+But somehow this is unsatisfying.  We can’t treat a dec’d number as a
 number directly, leading to problems about theorems, for instance,
 that a decrement undoes a successor.
 
@@ -58,7 +58,7 @@ reflexivity.
 
 We can do better than this.  Coq provides a mechanism known as
 _dependent pattern matching_.  This is nicely explained in Adam
-Chlipala's _Certified Programming with Dependent Types_, [available
+Chlipala’s _Certified Programming with Dependent Types_, [available
 online](http://adam.chlipala.net/cpdt/html/MoreDep.html).
 
 Whether a dependently typed language uses dependent pattern matching
@@ -110,7 +110,7 @@ With dependent types, we are able to formulate equality as a type.
 This is given below as the inductive type `equal`, which has a single
 constructor, `equal_refl`.  It takes a type as its argument, then a
 value of that type, producing a proposition, `equal A x x`, which
-should be read as "`x` is equal to `x` under the type A".
+should be read as “`x` is equal to `x` under the type A”
 
 ```coq
 Inductive equal (A : Type) (x : A) : A -> Prop := equal_refl : equal A x x.
@@ -122,8 +122,8 @@ equal_refl : forall (A : Type) (x : A), equal A x x
 *)
 ```
 
-To show it's really an equality, let's prove some properties about it,
-namely that it's symmetric and transitive.
+To show it’s really an equality, let’s prove some properties about it,
+namely that it’s symmetric and transitive.
 ```coq
 Theorem equal_sym : forall A (x y : A), equal A x y -> equal A y x.
 Proof.

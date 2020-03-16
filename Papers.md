@@ -16,11 +16,13 @@ Ultimate GOTO”.  MIT AI Memo 443, 1977.
 Steele shows that the notion that functional programming languages
 are impractically slow is pure myth.
 
-John Backus, “Can Programming Be Liberated From a Von Neumann Style?”
+John Backus, “Can Programming Be Liberated from the von Neumann Style?”
 Communications of the ACM, vol. 21, no. 8 (1978).  Backus’s 1977 Turing
 Award lecture presents the “FP” language and makes a detailed, insightful
-argument for functional programming.
-
+argument for functional programming.  Includes discussion on “the
+Algebra of Programs”; treating programs as an algebra that can be
+manipulated via laws.
+ 
 Philip Wadler, “Monads For Functional Programming”
 In Manfred Broy, *Program Design Calculi*.  Springer, 1993.
 [PDF available](https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
