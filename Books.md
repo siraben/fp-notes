@@ -15,7 +15,7 @@ Three incarnations of Bird & Wadler’s introductory text:
     Programming*.  Prentice Hall, 1988.  “The classic text on
     functional programming”, according to Philip Bewig.  Elegant and
     rigorous.
-    [PDF available.](https://usi-pl.github.io/lc/sp-2014/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf)
+    [PDF available.](https://usi-pl.github.io/lc/sp-2015/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf)
 
   * Richard Bird, *Introduction to Functional Programming Using Haskell*.
     Prentice Hall, 1998.  Contains lots of new material, including
@@ -46,7 +46,7 @@ Bird, *Pearls of Functional Algorithm Design*
 Bird and de Moor, *Algebra of Programming*
 
 Milewski, *Category Theory for Programmers*
-
+[PDF available.](https://github.com/hmemcpy/milewski-ctfp-pdf/releases/download/v1.3.0/category-theory-for-programmers.pdf)
 ## Type Theory
 
 Pierce, *Types and Programming Languages*
