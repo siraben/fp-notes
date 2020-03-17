@@ -20,8 +20,11 @@ John Backus, “Can Programming Be Liberated from the von Neumann Style?”
 Communications of the ACM, vol. 21, no. 8 (1978).  Backus’s 1977 Turing
 Award lecture presents the “FP” language and makes a detailed, insightful
 argument for functional programming.  Includes discussion on “the
-Algebra of Programs”; treating programs as an algebra that can be
-manipulated via laws.
+Algebra of Programs”, in which programs are manipulated via algebraic laws.
+Calling this algebra “a game amateurs can profitably play and enjoy”,
+Backus proves a handful of theorems and shows how they can be used to
+prove the correctness of larger FP programs.  This paper is so rich that
+it’s hard to believe it was presented as a lecture.
  
 Philip Wadler, “Monads For Functional Programming”
 In Manfred Broy, *Program Design Calculi*.  Springer, 1993.
