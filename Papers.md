@@ -85,6 +85,32 @@ Effects”.  Journal Of Functional Programming, 2008.
 The paper that introduced applicative functors, AKA “idioms”, to
 functional programming.
 
+## Functional Pearls
+Graham Hutton and Erik Meijer, “Monadic Parsing in Haskell”.  Journal
+of Functional Programming, 1998.
+
+Combines three areas into a single 8-page work.  Namely, functional
+parsers, using monads to structure functional programs, and
+`do`-notation.  Provides a very elegant and compositional approach to
+parsing that rivals imperative alternatives.  Treats parsers as
+first-class citizens, including _parser combinators_, higher-order
+functions that allow one to repeat a parser, or select between
+alternative parsers for choice, sequencing, and more.
+
+## Algorithms and Data Structures
+Ralf Hinze and Ross Patterson, “Finger trees: a simple general-purpose
+data structure”. Journal of Functional Programming, 2006.
+[PDF](https://archive.alvb.in/msc/03_infoafp/papers/2012-12-18_WerkCollege_FingerTreesRalfHinze.pdf)
+
+The paper presents a functional data structure, 2-3 finger trees,
+allowing amortized constant time access to the ends, and concatenation
+and splitting in time logarithmic to the smaller piece.  These bounds
+have been achieved prior to the work, but 2-3 trees are much simpler.
+By defining split operations generally, the data structure can be used
+as a sequence, priority queue, search tree, priority search queue,
+heap, interval tree, and more.  Changing how the split/merge works
+corresponds to changing the underlying monoid (`Measured` typeclass),
+unifying these data structures into a single monoidial frameowkr.
 
 ## Compilation
 
