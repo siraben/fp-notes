@@ -4,7 +4,7 @@
 
 John McCarthy, “Recursive Expressions and Their Computation By Machine,
 Part 1”.  Communications of the ACM, vol. 3, no. 4 (1960).
-[PDF available](http://www-formal.stanford.edu/jmc/recursive.pdf)
+[PDF](http://www-formal.stanford.edu/jmc/recursive.pdf)
 
 The paper in which McCarthy describes LISP, and introduces several
 ideas that became fundamental to the implementation of functional
@@ -13,7 +13,7 @@ languages, including garbage collection.
 Guy L. Steele, Jr., “Debunking the ‘Expensive Procedure Call’ Myth, or,
 Procedure Call Implementations Considered Harmful, or, Lambda: The
 Ultimate GOTO”.  MIT AI Memo 443, 1977.
-[PDF available](https://dspace.mit.edu/bitstream/handle/1721.1/5753/AIM-443.pdf?sequence=2&isAllowed=y)
+[PDF](https://dspace.mit.edu/bitstream/handle/1721.1/5753/AIM-443.pdf?sequence=2&isAllowed=y)
 
 Steele shows that the notion that functional programming languages are
 impractically slow is pure myth.
@@ -33,15 +33,25 @@ it was presented as a lecture.
 Philip Wadler, “How To Replace Failure By a List Of Successes”.
 Proceedings of a conference on functional programming languages and
 computer architecture, 1985.
-[PDF available.](https://rkrishnan.org/files/wadler-1985.pdf)
+[PDF](https://rkrishnan.org/files/wadler-1985.pdf)
 
 Wadler introduces a classic functional pearl.  He shows how a
 “stream-processing” technique can be used to solve problems that would
-traditionally be handled with backtracking.
+traditionally be handled with backtracking.  This is done by
+representing multiple return values with a list, where the empty list
+denotes failure.  Nondeterministic choice `OR` can be encoded as list
+append, `(or p q) x = p x ++ q x`, and conjunction `AND` is encoded as
+cartesian product.  A recursive descent parser is demonstrated.
+
+It's interesting to note the parallels between this work and later
+work on monads.  A monad with a failure is encapsulated by the
+`MonadZero` typeclass, a monad with choice is encapsulated by
+`MonadPlus`.  Applying a function to a list of nondeterministic values
+is `fmap` on lists.
  
 John Hughes, “Why Functional Programming Matters”.  The Computer
 Journal, 1989.
-[PDF available.](https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf)
+[PDF](https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf)
 
 An accessible argument for functional programming, and also a nice
 introduction to the subject.  For Hughes, the power of FP lies in
@@ -50,7 +60,7 @@ functional programs from tiny, reusable pieces.
 
 Philip Wadler, “Monads For Functional Programming”
 In Manfred Broy, *Program Design Calculi*.  Springer, 1993.
-[PDF available](https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
+[PDF](https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
 
 The paper which introduced monads as a major unifying concept in
 functional programming.  Wadler’s elegant presentation makes this idea
@@ -58,7 +68,7 @@ seem simple and natural.
 
 Conor McBride and Ross Paterson, “Applicative Programming With
 Effects”.  Journal Of Functional Programming, 2008.
-[PDF available.](http://www.staff.city.ac.uk/~ross/papers/Applicative.pdf)
+[PDF](http://www.staff.city.ac.uk/~ross/papers/Applicative.pdf)
 
 The paper that introduced applicative functors, AKA “idioms”, to
 functional programming.
@@ -68,9 +78,45 @@ functional programming.
 
 Patrick Bahr and Graham Hutton, “Calculating Correct Compilers”.
 Journal Of Functional Programming, 2015.
-[PDF (preprint) available.](http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf)
+[PDF (preprint)](http://www.cs.nott.ac.uk/~pszgmh/ccc.pdf)
 
 Bahr and Hutton show how to write a compiler for a small language
 using program calculation exclusively.  Draws together much of
 Hutton’s earlier work on the topic of compiler calculation and
 verification.
+
+## Haskell
+The topic of these papers are concerned primarily with the purely
+functional language Haskell.
+
+### Type system
+Oleg Kiselyov, Simon Peyton Jones, Chung-chieh Shan, “Fun with type
+functions”.  Reflections on the Work of CAR Hoare, 2010
+[PDF](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/typefun.pdf)
+
+This paper offers “a programmer's tour of _type families_”, a Haskell
+feature implemented in GHC.  It begins with a refresher on the role of
+types, and more advanced types, such as associated types.  In Haskell,
+we can _type constructors_, or _type functions_ as they are called in
+this paper, such as `[] :: * -> *`.  A type function can be fully
+applied to a type, yielding another type, or partially applied,
+yielding another type constructor, (`[] Int` becomes `[Int]`).
+
+The paper demonstrates arithmetic with implicit type “coercion”, data
+structures with the same interface but possibly different
+implementations, and optimized container representations (reminiscent
+of using C++ meta-programming to optimize certain structures into more
+memory efficient versions).  It then builds up to talk about building
+memoization tables (with references to generics), then session types.
+This allows for a client/server view of programming.  A type-safe solution to
+the formatted `printf` and `scanf` functions is presented.
+
+The last section elaborates phantom types--applying them to the
+problem of statically guaranteeing pointers are aligned, and
+parametrized monads.  As an example, we can have computations that use
+a certain number of resources (in the concurrent sense) and is
+statically guaranteed to not leave resources acquired, or acquire the
+same resource twice.  Finally, the data kinds feature is demonstrated
+to make type-level programming itself typed.
+
+
