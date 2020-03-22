@@ -10,6 +10,8 @@ The paper in which McCarthy describes LISP, and introduces several
 ideas that became fundamental to the implementation of functional
 languages, including garbage collection.
 
+---
+
 Guy L. Steele, Jr., “Debunking the ‘Expensive Procedure Call’ Myth, or,
 Procedure Call Implementations Considered Harmful, or, Lambda: The
 Ultimate GOTO”.  MIT AI Memo 443, 1977.
@@ -17,6 +19,8 @@ Ultimate GOTO”.  MIT AI Memo 443, 1977.
 
 Steele shows that the notion that functional programming languages are
 impractically slow is pure myth.
+
+---
 
 John Backus, “Can Programming Be Liberated from the von Neumann Style?”
 Communications of the ACM, vol. 21, no. 8 (1978).
@@ -29,6 +33,8 @@ amateurs can profitably play and enjoy”, Backus proves a handful of
 theorems and shows how they can be used to prove the correctness of
 larger FP programs.  This paper is so rich that it’s hard to believe
 it was presented as a lecture.
+
+---
 
 Philip Wadler, “How To Replace Failure By a List Of Successes”.
 Proceedings of a conference on functional programming languages and
@@ -48,7 +54,9 @@ work on monads.  A monad with a failure is encapsulated by the
 `MonadZero` typeclass, a monad with choice is encapsulated by
 `MonadPlus`.  Applying a function to a list of nondeterministic values
 is `fmap` on lists.
- 
+
+---
+
 John Hughes, “Why Functional Programming Matters”.  The Computer
 Journal, 1989.
 [PDF](https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf)
@@ -58,6 +66,8 @@ introduction to the subject.  For Hughes, the power of FP lies in
 its *compositionality*--the property that allows us to build up
 functional programs from tiny, reusable pieces.
 
+---
+
 Philip Wadler, “Monads For Functional Programming”
 In Manfred Broy, *Program Design Calculi*.  Springer, 1993.
 [PDF](https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
@@ -65,6 +75,8 @@ In Manfred Broy, *Program Design Calculi*.  Springer, 1993.
 The paper which introduced monads as a major unifying concept in
 functional programming.  Wadler’s elegant presentation makes this idea
 seem simple and natural.
+
+---
 
 Conor McBride and Ross Paterson, “Applicative Programming With
 Effects”.  Journal Of Functional Programming, 2008.
@@ -91,7 +103,7 @@ functional language Haskell.
 
 ### Type system
 Oleg Kiselyov, Simon Peyton Jones, Chung-chieh Shan, “Fun with type
-functions”.  Reflections on the Work of CAR Hoare, 2010
+functions”.  Reflections on the Work of CAR Hoare, 2010.
 [PDF](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/typefun.pdf)
 
 This paper offers “a programmer's tour of _type families_”, a Haskell
