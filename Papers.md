@@ -110,7 +110,7 @@ By defining split operations generally, the data structure can be used
 as a sequence, priority queue, search tree, priority search queue,
 heap, interval tree, and more.  Changing how the split/merge works
 corresponds to changing the underlying monoid (`Measured` typeclass),
-unifying these data structures into a single monoidial frameowkr.
+unifying these data structures into a single monoidial framework.
 
 ## Compilation
 
