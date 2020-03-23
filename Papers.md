@@ -116,6 +116,14 @@ algebras and interpretations as folds over that algebra.  A stateful
 calculator and `Teletype` and `Filesystem` examples are presented,
 along with how they can be freely combined.
 
+Oleg [published a
+comparsion](http://okmij.org/ftp/Haskell/extensible/extensible-a-la-carte.html)
+of the paper and his own work on Extensible Effects.  Swierstra´s
+construction is unable to handle the addition of new effects, as it
+was not extensible.  Instead, Oleg redefines Swierstra's `Expr` as
+`Term`, allowing for the interleaving of pure and impure computations,
+regaining extensibility.
+
 ## Algorithms and Data Structures
 Ralf Hinze and Ross Patterson, “Finger trees: a simple general-purpose
 data structure”. Journal of Functional Programming, 2006.
