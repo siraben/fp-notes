@@ -49,7 +49,7 @@ denotes failure.  Nondeterministic choice `OR` can be encoded as list
 append, `(or p q) x = p x ++ q x`, and conjunction `AND` is encoded as
 cartesian product.  A recursive descent parser is demonstrated.
 
-It´s interesting to note the parallels between this work and later
+It‘s interesting to note the parallels between this work and later
 work on monads.  A monad with a failure is encapsulated by the
 `MonadZero` typeclass, a monad with choice is encapsulated by
 `MonadPlus`.  Applying a function to a list of nondeterministic values
@@ -118,9 +118,9 @@ along with how they can be freely combined.
 
 Oleg [published a
 comparsion](http://okmij.org/ftp/Haskell/extensible/extensible-a-la-carte.html)
-of the paper and his own work on Extensible Effects.  Swierstra´s
+of the paper and his own work on Extensible Effects.  Swierstra‘s
 construction is unable to handle the addition of new effects, as it
-was not extensible.  Instead, Oleg redefines Swierstra's `Expr` as
+was not extensible.  Instead, Oleg redefines Swierstra‘s `Expr` as
 `Term`, allowing for the interleaving of pure and impure computations,
 regaining extensibility.
 
@@ -159,7 +159,7 @@ Oleg Kiselyov, Simon Peyton Jones, Chung-chieh Shan, “Fun with type
 functions”.  Reflections on the Work of CAR Hoare, 2010.
 [PDF](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/typefun.pdf)
 
-This paper offers “a programmer´s tour of _type families_”, a Haskell
+This paper offers “a programmer‘s tour of _type families_”, a Haskell
 feature implemented in GHC.  It begins with a refresher on the role of
 types, and more advanced types, such as associated types.  In Haskell,
 we can _type constructors_, or _type functions_ as they are called in
