@@ -83,7 +83,13 @@ Effects”.  Journal Of Functional Programming, 2008.
 [PDF](http://www.staff.city.ac.uk/~ross/papers/Applicative.pdf)
 
 The paper that introduced applicative functors, AKA “idioms”, to
-functional programming.
+functional programming.  Applicative functors correspond to the
+`Applicative` typeclass.  `Monad` is a subset of `Applicative`, and
+`Applicative` is a subset of `Functor`, thus `Functor`, `Applicative`
+and `Monad` form a hierarchy of abstractions.  `Functor` and `Monad`
+correspond to concepts from category theory, and the paper elaborates
+on the connection between `Applicative` and strong lax monoidial
+functors.
 
 ## Functional Pearls
 Graham Hutton and Erik Meijer, “Monadic Parsing in Haskell”.  Journal
