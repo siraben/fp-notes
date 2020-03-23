@@ -49,7 +49,7 @@ denotes failure.  Nondeterministic choice `OR` can be encoded as list
 append, `(or p q) x = p x ++ q x`, and conjunction `AND` is encoded as
 cartesian product.  A recursive descent parser is demonstrated.
 
-It's interesting to note the parallels between this work and later
+It´s interesting to note the parallels between this work and later
 work on monads.  A monad with a failure is encapsulated by the
 `MonadZero` typeclass, a monad with choice is encapsulated by
 `MonadPlus`.  Applying a function to a list of nondeterministic values
@@ -97,6 +97,19 @@ first-class citizens, including _parser combinators_, higher-order
 functions that allow one to repeat a parser, or select between
 alternative parsers for choice, sequencing, and more.
 
+---
+
+Wouter Swierstra, “Data types à la carte”.   Journal of functional
+programming, 2008.
+[PDF](http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf)
+
+The paper presents a solution to the expression problem, that is,
+extending a data type without recompiling existing code while
+retaining type safety. _Data types à la carte_ expresses effects as
+algebras and interpretations as folds over that algebra.  A stateful
+calculator and `Teletype` and `Filesystem` examples are presented,
+along with how they can be freely combined.
+
 ## Algorithms and Data Structures
 Ralf Hinze and Ross Patterson, “Finger trees: a simple general-purpose
 data structure”. Journal of Functional Programming, 2006.
@@ -132,7 +145,7 @@ Oleg Kiselyov, Simon Peyton Jones, Chung-chieh Shan, “Fun with type
 functions”.  Reflections on the Work of CAR Hoare, 2010.
 [PDF](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/typefun.pdf)
 
-This paper offers “a programmer's tour of _type families_”, a Haskell
+This paper offers “a programmer´s tour of _type families_”, a Haskell
 feature implemented in GHC.  It begins with a refresher on the role of
 types, and more advanced types, such as associated types.  In Haskell,
 we can _type constructors_, or _type functions_ as they are called in
