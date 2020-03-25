@@ -17,8 +17,20 @@ Procedure Call Implementations Considered Harmful, or, Lambda: The
 Ultimate GOTO”.  MIT AI Memo 443, 1977.
 [PDF](https://dspace.mit.edu/bitstream/handle/1721.1/5753/AIM-443.pdf?sequence=2&isAllowed=y)
 
-Steele shows that the notion that functional programming languages are
-impractically slow is pure myth.
+Steele debunks the (popular at the time) myth that procedure calls are
+expensive.  Starting in the 70‘s, there was increasing interest in
+so-called “structured programming”, whereby higher-level control
+structures (such as for loops, while loops, if and case statements
+were preferred over goto see Dijkstra's _GOTO considered harmful_).
+However, procedure calls, according to Steele, were avoided due to
+their “expensive” nature. Steele argues that this observation is due
+to poor implementation of procedure calls in languages such as PL/I.
+Procedure calls can actually be compiled as gotos in the
+tail-recursive case.  Provides good insight as to how a language
+should accommodate new expressive control structures without
+foresight.  “We should have a healthy effect for procedure calls, and
+use them sparingly; but we should respect them because they are
+powerful, and not because they are expensive.”
 
 ---
 
