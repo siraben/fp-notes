@@ -68,7 +68,7 @@ is easier to implement and leads to better error messages.
 
 In the following example, it looks like the ill-typed version except
 for the `return match n with ... end` clause, which forms the
-"dependent" part of the dependent pattern match.  We simply write a
+“dependent” part of the dependent pattern match.  We simply write a
 Gallina expression stating that when `n` is `0`, return a value of
 type `bool`, and when n is a successor of `n'`, return a value of type
 `nat`.
@@ -108,9 +108,9 @@ Editors note: _would this be clearer in Agda?_
 
 With dependent types, we are able to formulate equality as a type.
 This is given below as the inductive type `equal`, which has a single
-constructor, `equal_refl`.  It takes a type as its argument, then a
-value of that type, producing a proposition, `equal A x x`, which
-should be read as “`x` is equal to `x` under the type A”
+constructor, `equal_refl`.  It takes a type `A` as its argument, then
+a value `x` of that type, producing a proposition, `equal A x x`,
+which should be read as “`x` is equal to `x` under the type A”
 
 ```coq
 Inductive equal (A : Type) (x : A) : A -> Prop := equal_refl : equal A x x.

@@ -28,9 +28,9 @@ to poor implementation of procedure calls in languages such as PL/I.
 Procedure calls can actually be compiled as gotos in the
 tail-recursive case.  Provides good insight as to how a language
 should accommodate new expressive control structures without
-foresight.  “We should have a healthy effect for procedure calls, and
+foresight.  “We should have a healthy respect for procedure calls, and
 use them sparingly; but we should respect them because they are
-powerful, and not because they are expensive.”
+powerful, and not because they are “expensive””.
 
 ---
 
