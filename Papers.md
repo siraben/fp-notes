@@ -36,6 +36,7 @@ powerful, and not because they are “expensive””.
 
 John Backus, “Can Programming Be Liberated from the von Neumann Style?”
 Communications of the ACM, vol. 21, no. 8 (1978).
+[PDF](https://dl.acm.org/doi/pdf/10.1145/359576.359579?download=true)
 
 Backus’s 1977 Turing Award lecture presents the “FP” language and
 makes a detailed, insightful argument for functional programming.
@@ -106,6 +107,7 @@ functors.
 ## Functional Pearls
 Graham Hutton and Erik Meijer, “Monadic Parsing in Haskell”.  Journal
 of Functional Programming, 1998.
+[PDF](https://www.cs.nott.ac.uk/~pszgmh/pearl.pdf)
 
 Combines three areas into a single 8-page work.  Namely, functional
 parsers, using monads to structure functional programs, and
