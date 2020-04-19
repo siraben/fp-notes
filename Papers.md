@@ -176,7 +176,7 @@ functions”.  Reflections on the Work of CAR Hoare, 2010.
 This paper offers “a programmer‘s tour of _type families_”, a Haskell
 feature implemented in GHC.  It begins with a refresher on the role of
 types, and more advanced types, such as associated types.  In Haskell,
-we can _type constructors_, or _type functions_ as they are called in
+we have _type constructors_, or _type functions_ as they are called in
 this paper, such as `[] :: * -> *`.  A type function can be fully
 applied to a type, yielding another type, or partially applied,
 yielding another type constructor, (`[] Int` becomes `[Int]`).
