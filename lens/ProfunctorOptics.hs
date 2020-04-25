@@ -1,5 +1,5 @@
 {-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE RankNTypes, TypeOperators #-}
+{-# LANGUAGE RankNTypes, TypeOperators, NoMonomorphismRestriction #-}
 -- Saturday, April 25, 2020 at 13:41
 -- Profunctor Optics: The Categorical Approach - Bartosz Milewski
 
@@ -200,8 +200,8 @@ q x y = (a -> x, y -> b)
 
 -}
 
-type Lens s t a b = forall p. Strong p => p a b -> p s t
--- Lens s t a b = exists c. (s -> (c ,a) , (c, b) -> t)
+-- Lens s t a b = exists c. (s -> (c, a), (c, b) -> t)
+newtype Lens s t a b = Lens (forall p. Strong p => p a b -> p s t)
 
 type Prism s t a b = forall p. Choice p => p a b -> p s t
 -- Prism s t a b = exists c. (s -> Either c a, Either c b -> t)
@@ -214,6 +214,38 @@ class Profunctor p => Strong p where
 class Profunctor p => Choice p where
   left' :: p a b -> p (Either a c) (Either b c)
 
--- class Profunctor p => Tambara p where
---   left'' :: p a b -> p (a ⊗ c) (b ⊗ c)
+type Lens' s a = Lens s s a a
 
+instance Strong ((->)) where
+  first' f (a, c) = (f a, c)
+
+instance Choice ((->)) where
+  left' f (Left a) = Left (f a)
+  left' g (Right a) = Right a
+
+_1 :: Lens (a, c) (b, c) a b
+_1 = Lens first'
+
+unLens (Lens l) = l
+
+newtype Const b a = Const { getConst :: b }
+instance Functor (Const b) where
+  fmap f (Const b) = Const b
+
+modify :: Strong p => Lens s t a b -> p a b -> p s t
+modify (Lens l) f = l f
+
+set :: Lens s t a b -> b -> s -> t
+set l v = modify l (const v)
+
+-- Composition of lenses
+(>-) :: Lens s t a1 b1 -> Lens a1 b1 a2 b2 -> Lens s t a2 b2
+Lens ll >- Lens rr = Lens (ll . rr)
+
+{-
+λ> set (_1 >- _1) 5 ((1,2),3)
+((5,2),3)
+λ> modify (_1 >- _1) show ((1,2),3)
+(("1",2),3)
+
+-}

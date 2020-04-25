@@ -1,4 +1,4 @@
--- A lens is a just a pair of getters and settings
+-- A lens is a just a pair of getters and setters
 data Lens a b = Lens { get :: a -> b
                      , set :: b -> a -> a }
 
