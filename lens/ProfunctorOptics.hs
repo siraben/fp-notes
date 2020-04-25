@@ -200,13 +200,22 @@ q x y = (a -> x, y -> b)
 
 -}
 
+-- Now we generalize to a useful lens library thanks to phadej's post
+-- http://oleg.fi/gists/posts/2017-04-18-glassery.html
+
+-- An Optic for a profunctor p.
+type Optic p s t a b = p a b -> p s t
+
+type Optic' p s a = Optic p s s a a -- Simple (Optic p) s a
+
 -- Lens s t a b = exists c. (s -> (c, a), (c, b) -> t)
-newtype Lens s t a b = Lens (forall p. Strong p => p a b -> p s t)
+-- newtype Lens s t a b = Lens (forall p. Strong p => p a b -> p s t)
+type Lens s t a b = forall p. Strong p => Optic p s t a b
 
-type Prism s t a b = forall p. Choice p => p a b -> p s t
 -- Prism s t a b = exists c. (s -> Either c a, Either c b -> t)
+type Prism s t a b = forall p. Choice p => Optic p s t a b
 
-type Iso s t a b = forall p. Profunctor p => p a b -> p s t
+type Iso s t a b = forall p. Profunctor p => Optic p s t a b
 
 class Profunctor p => Strong p where
   first' :: p a b -> p (a, c) (b, c)
@@ -224,28 +233,89 @@ instance Choice ((->)) where
   left' g (Right a) = Right a
 
 _1 :: Lens (a, c) (b, c) a b
-_1 = Lens first'
+_1 = first'
 
-unLens (Lens l) = l
+unLens l = l
 
 newtype Const b a = Const { getConst :: b }
 instance Functor (Const b) where
   fmap f (Const b) = Const b
 
 modify :: Strong p => Lens s t a b -> p a b -> p s t
-modify (Lens l) f = l f
+modify l f = l f
 
-set :: Lens s t a b -> b -> s -> t
-set l v = modify l (const v)
+over :: Optic (->) s t a b -> (a -> b) -> s -> t
+over = id
+
+set :: Optic (->) s t a b -> s -> b -> t
+set o s b = over o (const b) s
 
 -- Composition of lenses
 (>-) :: Lens s t a1 b1 -> Lens a1 b1 a2 b2 -> Lens s t a2 b2
-Lens ll >- Lens rr = Lens (ll . rr)
+ll >- rr = ll . rr
 
 {-
-λ> set (_1 >- _1) 5 ((1,2),3)
+λ> view (_1 . _1) ((1,2),3)
+1
+λ> set (_1 . _1) ((1,2),3) 5
 ((5,2),3)
-λ> modify (_1 >- _1) show ((1,2),3)
-(("1",2),3)
 
 -}
+newtype Re p s t a b = Re { runRe :: p b a -> p t s }
+
+-- Covariant bifunctor
+class Bifunctor p where
+    bimap :: (a -> b) -> (c -> d) -> p a c -> p b d
+    bimap f g = first f . second g
+
+    first :: (a -> b) -> p a c -> p b c
+    first f = bimap f id
+
+    second :: (b -> c) -> p a b -> p a c
+    second = bimap id
+
+    {-# MINIMAL bimap | (first, second) #-}
+
+-- Contravariant bifunctor
+class Bicontravariant p where
+    cimap :: (b -> a) -> (d -> c) -> p a c -> p b d
+    cimap f g = cofirst f . cosecond g
+
+    cofirst :: (b -> a) -> p a c -> p b c
+    cofirst f = cimap f id
+
+    cosecond :: (c -> b) -> p a b -> p a c
+    cosecond = cimap id
+
+    {-# MINIMAL cimap | (cofirst, cosecond) #-}
+
+instance Profunctor p => Profunctor (Re p s t) where
+    dimap f g (Re p) = Re (p . dimap g f)
+
+instance Bifunctor p => Bicontravariant (Re p s t) where
+    cimap f g (Re p) = Re (p . bimap g f)
+
+instance Bicontravariant p => Bifunctor (Re p s t) where
+    bimap f g (Re p) = Re (p . cimap g f)
+
+
+type Getter s a = forall p. (Bicontravariant p, Strong p) => Optic' p s a
+
+lens :: (s -> a) -> (s -> b -> t) -> Lens s t a b
+lens gt st pab = dimap (\s -> (gt s, s))
+                       (\(b, s) -> st s b)
+                       (first' pab)
+
+newtype Forget r a b = Forget { runForget :: a -> r }
+
+instance Profunctor (Forget r) where
+    dimap f _ (Forget p) = Forget (p . f)
+
+instance Strong (Forget r) where
+    first' (Forget p) = Forget (p . fst)
+
+instance Bicontravariant (Forget r) where
+    cimap f _ (Forget p) = Forget (p . f)
+
+view :: Optic' (Forget a) s a -> s -> a
+view o = runForget (o (Forget id))
