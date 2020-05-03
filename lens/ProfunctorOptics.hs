@@ -14,6 +14,7 @@ instance Profunctor ((->)) where
 -- Natural transformation between functors f and g
 type f ~> g = forall x. f x -> g x
 
+-- Example of a natural transformation
 safeHead :: [] ~> Maybe
 safeHead [] = Nothing
 safeHead (x:xs) = Just x
