@@ -5,7 +5,7 @@ There is a lot of literature on Functional Programming (FP).  This
 repository aims to catalogue papers, books, blog posts and notes on
 the myriad of topics out there, hopefully in some coherent fashion.
 
-## Planned content
+## Contents
 - Notes on reasoning about programs, eventually to be formalized in a
   proof assistant
 - Commentary on papers and books
@@ -30,7 +30,6 @@ to the topic being described.  For instance;
   rewrite in Agda for more readable proofs, if needed.
 
 ## License
-
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0
 International License][cc-by-sa].
 

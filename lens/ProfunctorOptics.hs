@@ -201,35 +201,42 @@ q x y = (a -> x, y -> b)
 
 -}
 
+-- Some call these typeclasses "strong" and "choice", but cartesian
+-- and cocartesian better emphasize their dual nature.
+-- Cartesian profunctors
+class Profunctor p => Cartesian p where
+  first' :: p a b -> p (a, c) (b, c)
+
+-- Cocartesian profunctors
+class Profunctor p => Cocartesian p where
+  left' :: p a b -> p (Either a c) (Either b c)
+
 -- Now we generalize to a useful lens library thanks to phadej's post
 -- http://oleg.fi/gists/posts/2017-04-18-glassery.html
 
--- An Optic for a profunctor p.
+-- A heterogeneous optic.
 type Optic p s t a b = p a b -> p s t
 
+-- A homogeneous optic.
 type Optic' p s a = Optic p s s a a -- Simple (Optic p) s a
 
 -- Lens s t a b = exists c. (s -> (c, a), (c, b) -> t)
--- newtype Lens s t a b = Lens (forall p. Strong p => p a b -> p s t)
-type Lens s t a b = forall p. Strong p => Optic p s t a b
+-- For lenses, p has to be a cartesian profunctor.
+type Lens s t a b = forall p. Cartesian p => Optic p s t a b
 
+-- Homogeneous lenses
+type Lens' s a = Lens s s a a
+
+-- For prisms, p has to be a cocartesian profunctor.
 -- Prism s t a b = exists c. (s -> Either c a, Either c b -> t)
-type Prism s t a b = forall p. Choice p => Optic p s t a b
+type Prism s t a b = forall p. Cocartesian p => Optic p s t a b
 
 type Iso s t a b = forall p. Profunctor p => Optic p s t a b
 
-class Profunctor p => Strong p where
-  first' :: p a b -> p (a, c) (b, c)
-
-class Profunctor p => Choice p where
-  left' :: p a b -> p (Either a c) (Either b c)
-
-type Lens' s a = Lens s s a a
-
-instance Strong ((->)) where
+instance Cartesian ((->)) where
   first' f (a, c) = (f a, c)
 
-instance Choice ((->)) where
+instance Cocartesian ((->)) where
   left' f (Left a) = Left (f a)
   left' g (Right a) = Right a
 
@@ -242,7 +249,7 @@ newtype Const b a = Const { getConst :: b }
 instance Functor (Const b) where
   fmap f (Const b) = Const b
 
-modify :: Strong p => Lens s t a b -> p a b -> p s t
+modify :: Cartesian p => Lens s t a b -> p a b -> p s t
 modify l f = l f
 
 over :: Optic (->) s t a b -> (a -> b) -> s -> t
@@ -299,20 +306,20 @@ instance Bifunctor p => Bicontravariant (Re p s t) where
 instance Bicontravariant p => Bifunctor (Re p s t) where
     bimap f g (Re p) = Re (p . cimap g f)
 
-
-type Getter s a = forall p. (Bicontravariant p, Strong p) => Optic' p s a
+type Getter s a = forall p. (Bicontravariant p, Cartesian p) => Optic' p s a
 
 lens :: (s -> a) -> (s -> b -> t) -> Lens s t a b
 lens gt st pab = dimap (\s -> (gt s, s))
                        (\(b, s) -> st s b)
                        (first' pab)
 
+-- Forgetful functors
 newtype Forget r a b = Forget { runForget :: a -> r }
 
 instance Profunctor (Forget r) where
     dimap f _ (Forget p) = Forget (p . f)
 
-instance Strong (Forget r) where
+instance Cartesian (Forget r) where
     first' (Forget p) = Forget (p . fst)
 
 instance Bicontravariant (Forget r) where

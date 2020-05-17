@@ -6,21 +6,24 @@ Understanding lenses by making them from scratch in different ways.
     however, they do not compose, which poses problems when one tries
     to build larger lenses out of smaller ones.
 - 2020-04-24 Added `VanLaarhoven.hs`
-  - A CPS encoding of lenses, representing them as just functions,
-    allowing for lens composition with `(.)`.
+  - A CPS encoding of lenses, representing them as functions, allowing
+    for lens composition with `(.)`.
 - 2020-04-25 Added `ProfunctorOptics.hs`
   - A profunctor encoding of optics, allowing for lens composition
     with `(.)`.  Recovering lenses, prisms, traversals arises from
     imposing additional constraints on the profunctor.
 
-# Resources for Understanding Lenses
+# Resources
 ## Talks
-- Jeremy Gibbons - _Profunctor Optics - Modular Data Accessors_
+- Jeremy Gibbons, _Profunctor Optics - Modular Data Accessors_
   [Link](https://www.youtube.com/watch?v=sfWzUMViP0M)
-- Bartosz Milewski - _Profunctor Optics: The Categorical
-  Approach_[Link](https://www.youtube.com/watch?v=l1FCXUi6Vlw)
+- Bartosz Milewski, _Profunctor Optics: The Categorical
+  Approach_ [Link](https://www.youtube.com/watch?v=l1FCXUi6Vlw)
 
 ## Blog posts
-Joseph Abrahamson - _Lenses from scratch_ [Link](https://www.schoolofhaskell.com/user/tel/lenses-from-scratch)
+Joseph Abrahamson, _Lenses from scratch_
+[Link](https://www.schoolofhaskell.com/user/tel/lenses-from-scratch)
+
 ## Books
-Chris Penner - _Optics By Example_ [Link](https://leanpub.com/optics-by-example)
+Chris Penner, _Optics By Example_
+[Link](https://leanpub.com/optics-by-example)

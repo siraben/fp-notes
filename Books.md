@@ -43,7 +43,12 @@ Bird, *Pearls of Functional Algorithm Design*
 
 ## FP and Mathematics
 
-Bird and de Moor, *Algebra of Programming*
+Bird and de Moor, *Algebra of Programming*.
+Focuses on program calculation from a categorical viewpoint,
+emphasizing F-algebras, catamorphisms and universal properties.
+Generalizes this approach to work with relations too, allowing for
+derivation of programs from specification.  Optimization and dynamic
+programming problems are solved with this new viewpoint.
 
 Milewski, *Category Theory for Programmers*
 [PDF available.](https://github.com/hmemcpy/milewski-ctfp-pdf/releases/download/v1.3.0/category-theory-for-programmers.pdf)
