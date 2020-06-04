@@ -1,4 +1,16 @@
 # Papers
+## Algebra of Programming
+
+Graham Hutton, ”Fold and Unfold for Program Semantics”.  ACM SIGPLAN
+Notices, 1998.
+
+Shows that recursion operators have applications in structuring and
+reasoning about program semantics within a functional language.  The
+_fold_ function can be used to structure denotational semantics, and
+_unfold_ can be used to structure operational semantics.  This
+necessarily highlights the duality between denotational and
+operational semantics.  Example denotational and operational semantics
+for Milner’s Calculus of Concurrent Systems are given.
 
 ## Landmark Papers
 
