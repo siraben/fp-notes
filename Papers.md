@@ -3,6 +3,7 @@
 
 Graham Hutton, ”Fold and Unfold for Program Semantics”.  ACM SIGPLAN
 Notices, 1998.
+[PDF](https://www.cs.nott.ac.uk/~pszgmh/semantics.pdf)
 
 Shows that recursion operators have applications in structuring and
 reasoning about program semantics within a functional language.  The
