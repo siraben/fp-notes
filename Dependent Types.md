@@ -104,41 +104,51 @@ Proof. reflexivity. Qed.
 Proofs and programs.
 
 ### Equality as a type
-Editors note: _would this be clearer in Agda?_
 
 With dependent types, we are able to formulate equality as a type.
 This is given below as the inductive type `equal`, which has a single
-constructor, `equal_refl`.  It takes a type `A` as its argument, then
-a value `x` of that type, producing a proposition, `equal A x x`,
-which should be read as “`x` is equal to `x` under the type A”
+constructor, `equal_refl`.  It takes an (implicit) type `A` as its
+argument, then a value `x` of type `A`, producing a proposition,
+`equal x x`, which should be read as “`x` is equal to `x` under the
+type A”.
 
 ```coq
-Inductive equal (A : Type) (x : A) : A -> Prop := equal_refl : equal A x x.
+Inductive equal {A : Type} (x : A) : A -> Prop := equal_refl : equal x x.
 
 Check equal_refl.
 
-(*
-equal_refl : forall (A : Type) (x : A), equal A x x
-*)
+(* equal_refl *)
+(*      : forall x : ?A, equal x x *)
+(* where *)
+(* ?A : [ |- Type] *)
 ```
 
 To show it’s really an equality, let’s prove some properties about it,
 namely that it’s symmetric and transitive.
+
 ```coq
-Theorem equal_sym : forall A (x y : A), equal A x y -> equal A y x.
+Theorem equal_sym : forall {A} (x y : A), equal x y -> equal y x.
 Proof.
-  intros A x y H.
-  destruct H.
-  exact (equal_refl A x).
+  refine (fun A x y H => match H with
+                      | equal_refl _ => _
+                      end).
+  refine (equal_refl x).
 Qed.
 
-Theorem equal_trans : forall A (x y z : A), equal A x y -> equal A y z -> equal A x z.
+Theorem equal_trans : forall {A} (x y z : A), equal x y -> equal y z -> equal x z.
 Proof.
-  intros A x y z H H0.
-  destruct H, H0.
-  exact (equal_refl A x).
+  refine (fun A x y z H H0 => match H, H0 with
+                           | equal_refl _, equal_refl _ => _
+                           end).
+  refine (equal_refl x).
 Qed.
 ```
+
+Note that the `refine` tactic allows us to construct a proof term
+ourselves, and when we put a hole `_` in that term, it creates a
+subgoal corresponding to the type of that hole.  In this manner it
+would be more readable to those familiar with Agda and dependent
+types.
 
 `equal_refl`, `equal_sym`, `equal_trans` together show that `equal` is
 an [equivalence
@@ -148,11 +158,13 @@ Finally, we show that we can use a proof that `x` equals `y` to
 substitute `x` for `y` in any predicate `P`.
 
 ```coq
-Theorem equal_cong : forall A (x y : A) (P : A -> Prop), P x -> equal A x y -> P y.
+Theorem equal_cong : forall {A} (x y : A) (P : A -> Prop), P x -> equal x y -> P y.
 Proof.
-  intros A x y P Px eqxy.
-  destruct eqxy.
-  exact Px.
+  refine (fun A x y P H eqxy => _).
+  refine (match eqxy with
+          | equal_refl _ => _
+          end).
+  refine H.
 Qed.
 ```
 
