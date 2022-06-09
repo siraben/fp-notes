@@ -15,7 +15,7 @@ Three incarnations of Bird & Wadler’s introductory text:
     Programming*.  Prentice Hall, 1988.  “The classic text on
     functional programming”, according to Philip Bewig.  Elegant and
     rigorous.
-    [PDF available.](https://usi-pl.github.io/lc/sp-2015/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf)
+    [PDF available.](https://usi-pl.github.io/lc/sp-2015/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf) ([Wayback Machine archive, as the original page seems to have gone missing](http://web.archive.org/web/20210130190225/http://usi-pl.github.io/lc/sp-2015/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf))
 
   * Richard Bird, *Introduction to Functional Programming Using Haskell*.
     Prentice Hall, 1998.  Contains lots of new material, including
